@@ -1,0 +1,72 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: eks-read
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - podtemplates
+  - apiservices
+  - daemonsets
+  - deployments
+  - endpoints
+  - endpointslices
+  - ingresses
+  - ingressclasses
+  - jobs
+  - leases
+  - runtimeclasses
+  - flowschemas
+  - prioritylevelconfigurations
+  - cronjobs
+  - pods
+  - podtemplates
+  - pods/log
+  - priorityclasses
+  - replicasets
+  - configmaps
+  - secrets
+  - services
+  - statefulsets
+  - serviceaccounts
+  - virtualservices
+  - horizontalpodautoscalers
+  - gateways
+  - namespaces
+  - nodes
+  - persistentvolumeclaims
+  - persistantvolumes
+  - volumeattachments
+  - csidrivers
+  - csinodes
+  - csistoragecapacities
+  - clusterroles
+  - clusterrolebinding
+  - roles
+  - rolebindings
+  - limitranges
+  - resourcequotas
+  - networkpolicies
+  - poddisruptionbudgets
+  - customresourcedefinitions
+  - mutatingswebhookconfigurations
+  - validatingwebhookconfigurations
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: eks-read
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: eks-read
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: eks-read
